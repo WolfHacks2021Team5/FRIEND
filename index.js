@@ -14,7 +14,9 @@ function parseIntent(text) {
         let intent = responses[value];
 
         for (let trigger of intent.triggers) {
-            if (stripped.includes(trigger)) {
+            if (trigger === 'hi') {
+                if (stripped === 'hi') return intent.responses[Math.floor(Math.random() * intent.responses.length)];
+            } else if (stripped.includes(trigger)) {
                 return intent.responses[Math.floor(Math.random() * intent.responses.length)];
             }
         }
@@ -138,6 +140,7 @@ function init() {
     ]);
 
     responses.hello = new Intent([
+        'hi',
         'hey',
         'hello',
     ], [
